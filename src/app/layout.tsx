@@ -1,3 +1,4 @@
+import { QueryProvider } from "@/providers/QueryProvider";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import type { Metadata } from "next";
@@ -31,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <QueryProvider>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
+        </QueryProvider>
       </body>
     </html>
   );
