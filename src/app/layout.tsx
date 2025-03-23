@@ -1,5 +1,7 @@
+import { Layout } from "@/containers/layout/AppLayout";
 import { QueryProvider } from "@/providers/QueryProvider";
-import { createTheme, MantineProvider } from "@mantine/core";
+import ThemeProvider from "@/providers/ThemeProvider";
+import "@mantine/carousel/styles.css";
 import "@mantine/core/styles.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -13,10 +15,6 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const theme = createTheme({
-  /** Your theme override here */
 });
 
 export const metadata: Metadata = {
@@ -33,7 +31,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <QueryProvider>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
+          <ThemeProvider>
+            <Layout>{children}</Layout>
+          </ThemeProvider>
         </QueryProvider>
       </body>
     </html>

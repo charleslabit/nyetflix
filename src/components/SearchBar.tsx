@@ -8,19 +8,28 @@ interface SearchBarProps {
 
 export const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [query, setQuery] = useState("");
-  const [debouncedQuery] = useDebouncedValue(query, 300);
+  const [debouncedQuery] = useDebouncedValue(query, 100);
+
+  const handleSearch = () => {
+    onSearch(debouncedQuery);
+  };
+
+  const handleEnterKey = () => {
+    onSearch(query);
+  };
 
   return (
     <Grid justify="center" align="center" mt="lg">
-      <Grid.Col span={8}>
+      <Grid.Col span={"auto"}>
         <TextInput
           placeholder="Search for a movie..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleEnterKey()}
         />
       </Grid.Col>
-      <Grid.Col span={4}>
-        <Button onClick={() => onSearch(debouncedQuery)}>Search</Button>
+      <Grid.Col span={"content"}>
+        <Button onClick={handleSearch}>Search</Button>
       </Grid.Col>
     </Grid>
   );

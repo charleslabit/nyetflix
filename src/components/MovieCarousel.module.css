@@ -1,0 +1,14 @@
+.carousel {
+  position: "relative";
+  &:hover {
+    opacity: 1;
+  }
+}
+.control {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: "gray";
+  &:hover {
+    background-color: "green";
+  }
+}
