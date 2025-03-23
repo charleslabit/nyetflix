@@ -1,4 +1,5 @@
 import { Movie } from "@/services/tmdbApi";
+import { formatTitle } from "@/util";
 import { Carousel } from "@mantine/carousel";
 import { Title } from "@mantine/core";
 import {
@@ -27,7 +28,7 @@ export const MovieCarousel = ({
   return (
     <section>
       <Title order={2} mt="xl" tt="capitalize">
-        {title}
+        {formatTitle(title)}
       </Title>
       <Carousel
         className={classes.carousel}
