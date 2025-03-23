@@ -26,7 +26,7 @@ export const MovieCarousel = ({
 
   return (
     <section>
-      <Title order={2} mt="xl">
+      <Title order={2} mt="xl" tt="capitalize">
         {title}
       </Title>
       <Carousel
