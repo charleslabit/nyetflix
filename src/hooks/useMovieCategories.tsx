@@ -8,20 +8,31 @@ import {
 } from "@/services/tmdbApi";
 import { useQuery } from "@tanstack/react-query";
 
-const CATEGORIES = [
-  { key: "trending", title: "Trending Movies", fetchFn: fetchTrending },
-  { key: "popular", title: "Most Popular", fetchFn: fetchPopular },
-  { key: "upcoming", title: "Upcoming", fetchFn: fetchUpcoming },
-  { key: "now_playing", title: "Now Playing", fetchFn: fetchNowPlaying },
-  { key: "discover", title: "Discover", fetchFn: fetchDiscover },
-];
-
 export const useMovieCategories = () => {
-  return CATEGORIES.map(({ key, title, fetchFn }) => {
-    const query = useQuery<Movie[]>({
-      queryKey: [key], // Using predefined keys
-      queryFn: fetchFn,
-    });
-    return { title, ...query }; // Returns { title, data, isLoading, error, etc. }
+  const trending = useQuery<Movie[]>({
+    queryKey: ["trending"],
+    queryFn: fetchTrending,
   });
+
+  const popular = useQuery<Movie[]>({
+    queryKey: ["popular"],
+    queryFn: fetchPopular,
+  });
+
+  const upcoming = useQuery<Movie[]>({
+    queryKey: ["upcoming"],
+    queryFn: fetchUpcoming,
+  });
+
+  const nowPlaying = useQuery<Movie[]>({
+    queryKey: ["nowPlaying"],
+    queryFn: fetchNowPlaying,
+  });
+
+  const discover = useQuery<Movie[]>({
+    queryKey: ["discover"],
+    queryFn: fetchDiscover,
+  });
+
+  return { trending, popular, upcoming, nowPlaying, discover };
 };

@@ -65,14 +65,16 @@ export const Home = () => {
 
         {!query && (
           <>
-            {categoryQueries.map(({ title, data: movies = [], isLoading }) => (
-              <MovieCarousel
-                key={title}
-                title={title}
-                movies={movies}
-                isLoading={isLoading}
-              />
-            ))}
+            {Object.entries(categoryQueries).map(
+              ([title, { data, isLoading }]) => (
+                <MovieCarousel
+                  key={title}
+                  title={title}
+                  movies={data || []}
+                  isLoading={isLoading}
+                />
+              )
+            )}
           </>
         )}
       </Stack>
